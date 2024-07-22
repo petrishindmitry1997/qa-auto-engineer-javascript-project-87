@@ -1,7 +1,7 @@
-const statusUnchanged = (diffObject) => Object.keys(diffObject).filter((key) => 
-  diffObject[key].type === 'added'
-  || diffObject[key].type === 'deleted'
-  || diffObject[key].type === 'updated');
+const statusUnchanged = (diffObject) => Object.keys(diffObject).filter((key) =>
+diffObject[key].type === 'added'
+|| diffObject[key].type === 'deleted'
+|| diffObject[key].type === 'updated');
 
 const status = {
   added: (node, path) => `Property '${path}' was added with value: ${node.value}`,
