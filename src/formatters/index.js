@@ -16,5 +16,5 @@ const format = (diffObject, formatName = 'stylish') => {
 
   return formats.unsupported(formatName);
 };
- 
+
 export default format;
