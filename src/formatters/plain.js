@@ -1,17 +1,17 @@
-const statusUnchanged = (diffObject) => Object.keys(diffObject).filter((key) => ['added', 'deleted', 'updated'].includes(diffObject[key].type));
+const statusRn = (diffObject) => Object.keys(diffObject).filter((key) => ['added', 'deleted', 'updated'].includes(diffObject[key].type));
 
-const status = {
-  added: (node, path) => `Property '${path}' was added with value: ${node.value}`,
+const solution = {
   deleted: (node, path) => `Property '${path}' was removed`,
   updated: (node, path) => `Property '${path}' was updated. From ${node.old} to ${node.new}`,
+  added: (node, path) => `Property '${path}' was added with value: ${node.value}`,
 };
 
-const stringToArray = (diffObject) => statusUnchanged(diffObject).map((key) => {
+const stringToArray = (diffObject) => statusRn(diffObject).map((key) => {
   const node = diffObject[key];
-  if (Object.hasOwn(status, node.type)) {
-    return status[node.type](diffObject[key], key);
+  if (Object.hasOwn(solution, node.type)) {
+    return solution[node.type](diffObject[key], key);
   }
-  throw new Error(`Unexpected status '${node.type}' for ${key}`);
+  throw new Error(`Unexpected solution '${node.type}' for ${key}`);
 });
 const plainFormat = (diffObject) => stringToArray(diffObject).join('\n');
 
