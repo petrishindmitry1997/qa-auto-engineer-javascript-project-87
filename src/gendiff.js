@@ -21,7 +21,7 @@ const buildDiff = (object1, object2) => {
 
 const makeFullPath = (path1) => path.resolve(path1);
 const getData = (fullPath) => {
-  const file = fs.readFileSync(fullPath, 'utf-8');
+  const file = fs.readFileSync(fullPath, 'UTF-8');
   const fileFormat = path.extname(fullPath).substring(1);
 
   return parse(file, fileFormat);
