@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import format from './formatters/index.js';
@@ -7,7 +6,7 @@ import parse from './parser.js';
 const buildDiff = (object1, object2) => {
   const allKeys = Object.keys(object1).concat(Object.keys(object2));
   const uniqueKeys = Array.from(new Set(allKeys));
-  const sortedKeys = uniqueKeys.sort();
+  const sortedKeys = [...uniqueKeys].sort();
   return sortedKeys.reduce((acc, currentKey) => {
     if (object2[currentKey] === undefined) {
       return { ...acc, [currentKey]: { type: 'deleted', value: object1[currentKey] } };
