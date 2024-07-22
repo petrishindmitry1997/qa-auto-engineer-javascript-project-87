@@ -8,13 +8,13 @@ const formats = {
   stylish: (diffObject) => styleFormat(diffObject),
   unsupported: (formatName) => console.log(`Error: '${formatName}'`),
 };
-  
+
 const format = (diffObject, formatName = 'stylish') => {
   if (Object.hasOwn(formats, formatName)) {
     return formats[formatName](diffObject);
-  };
-  
+  }
+
   return formats.unsupported(formatName);
 };
-  
+ 
 export default format;

@@ -1,5 +1,5 @@
 const statusUnchanged = (diffObject) => Object.keys(diffObject).filter((key) =>
-diffObject[key].type === 'added'
+  diffObject[key].type === 'added'
 || diffObject[key].type === 'deleted'
 || diffObject[key].type === 'updated');
 
