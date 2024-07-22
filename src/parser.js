@@ -6,8 +6,9 @@ const formats = {
   yaml: (data) => YAML.parse(data),
 };
 const parse = (data, format) => {
-  if (Object.hasOwn(formats, format)) return formats[format](data);
-
+  if (Object.hasOwn(formats, format)) {
+    return formats[format](data);
+  }
   console.log(`${format} file format is not supported.`);
 
   throw new Error(`Unsupported format ${format}`);

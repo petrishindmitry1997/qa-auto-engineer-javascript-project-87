@@ -8,7 +8,9 @@ const status = {
 
 const stringToArray = (diffObject) => statusUnchanged(diffObject).map((key) => {
   const node = diffObject[key];
-  if (Object.hasOwn(status, node.type)) return status[node.type](diffObject[key], key);
+  if (Object.hasOwn(status, node.type)) {
+    return status[node.type](diffObject[key], key);
+  }
   throw new Error(`Unexpected status '${node.type}' for ${key}`);
 });
 const plainFormat = (diffObject) => stringToArray(diffObject).join('\n');
