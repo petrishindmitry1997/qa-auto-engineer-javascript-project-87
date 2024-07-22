@@ -11,13 +11,13 @@ const buildDiff = (object1, object2) => {
   return sortedKeys.map((key) => {
     const keyObject1 = _.has(object1, key);
     const keyObject2 = _.has(object2, key);
-    if (keyObject1 && !keyObject2) return { type: 'deleted', key, value: object1[key] };
-    if (!keyObject1 && keyObject2) return { type: 'added', key, value: object2[key] };
+    if (keyObject1 && !keyObject2) 
+      return { type: 'deleted', key, value: object1[key] };
+    if (!keyObject1 && keyObject2) 
+      return { type: 'added', key, value: object2[key] };
 
     if (!_.isEqual(object1[key], object2[key])) {
-      return {
-        type: 'updated', key, old: object1[key], new: object2[key],
-      };
+      return { type: 'updated', key, old: object1[key], new: object2[key] };
     }
 
     return { type: 'unchanged', key, value: object1[key] };
