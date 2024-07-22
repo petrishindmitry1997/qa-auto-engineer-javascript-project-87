@@ -5,23 +5,17 @@ import format from './formatters/index.js';
 import parse from './parser.js';
 
 const buildDiff = (object1, object2) => {
-  const keys = _.union(Object.keys(object1), Object.keys(object2));
-  const sortedKeys = _.sortBy(keys);
+  const titleKey = _.sortBy(_.uniq(Object.keys(object1).concat(Object.keys(object2))));
 
-  return sortedKeys.map((key) => {
-    const keyObject1 = _.has(object1, key);
-    const keyObject2 = _.has(object2, key);
-    if (keyObject1 && !keyObject2) 
-      return { type: 'deleted', key, value: object1[key] };
-    if (!keyObject1 && keyObject2) 
-      return { type: 'added', key, value: object2[key] };
-
-    if (!_.isEqual(object1[key], object2[key])) {
-      return { type: 'updated', key, old: object1[key], new: object2[key] };
-    }
-
-    return { type: 'unchanged', key, value: object1[key] };
-  });
+  return titleKey.reduce((acc, currentKey) => {
+    if (object1[currentKey] === undefined)
+      return { ...acc, [currentKey]: { type: 'added', value: object2[currentKey] } };
+    if (object2[currentKey] === undefined)
+      return { ...acc, [currentKey]: { type: 'deleted', value: object1[currentKey] } };
+    if (object1[currentKey] === object2[currentKey])
+      return { ...acc, [currentKey]: { type: 'unchanged', value: object1[currentKey] } };
+    return { ...acc, [currentKey]: { type: 'updated', old: object1[currentKey], new: object2[currentKey] } };
+  }, {});
 };
 
 
