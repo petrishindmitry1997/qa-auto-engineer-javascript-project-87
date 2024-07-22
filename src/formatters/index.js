@@ -5,11 +5,11 @@ import styleFormat from './style.js';
 const formats = {
     json: (diffObject) => jsonFormat(diffObject),
     plain: (diffObject) => plainFormat(diffObject),
-    style: (diffObject) => styleFormat(diffObject),
+    stylish: (diffObject) => styleFormat(diffObject),
     unsupported: (formatName) => console.log(`Error: '${formatName}'`),
   };
   
-  const format = (diffObject, formatName = 'style') => {
+  const format = (diffObject, formatName = 'stylish') => {
     if (Object.hasOwn(formats, formatName))
         return formats[formatName](diffObject);
   
