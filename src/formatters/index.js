@@ -1,7 +1,7 @@
 import plainFormat from './plain.js';
 import jsonFormat from './json.js';
 
-export default (diff, outputFormat) => {
+const format = (diff, outputFormat) => {
   switch (outputFormat) {
     case 'plain':
       return plainFormat(diff);
@@ -11,3 +11,5 @@ export default (diff, outputFormat) => {
       throw new Error(`Unknown output format: '${outputFormat}'!`);
   }
 };
+
+export default format;
