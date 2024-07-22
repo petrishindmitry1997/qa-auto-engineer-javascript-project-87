@@ -7,7 +7,6 @@ const status = {
   added: (node, path) => `Property '${path}' was added with value: ${node.value}`,
   deleted: (node, path) => `Property '${path}' was removed`,
   updated: (node, path) => `Property '${path}' was updated. From ${node.old} to ${node.new}`,
-  unchanged: 'not used',
 };
 
 const stringToArray = (diffObject) => statusUnchanged(diffObject).map((key) => {
