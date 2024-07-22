@@ -15,6 +15,9 @@ const buildDiff = (object1, object2) => {
     if (object1[currentKey] === undefined) {
       return { ...acc, [currentKey]: { type: 'added', value: object2[currentKey] } };
     }
+    if (object1[currentKey] === object2[currentKey]) {
+      return { ...acc, [currentKey]: { type: 'unchanged', value: object1[currentKey] } };
+    }
     return { ...acc, [currentKey]: { type: 'updated', old: object1[currentKey], new: object2[currentKey] } };
   }, {});
 };

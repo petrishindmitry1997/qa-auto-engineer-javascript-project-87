@@ -2,6 +2,7 @@ const status = {
   deleted: (node, path) => `  - ${path}: ${node.value}`,
   updated: (node, path) => `  - ${path}: ${node.old}\n  + ${path}: ${node.new}`,
   added: (node, path) => `  + ${path}: ${node.value}`,
+  unchanged: (node, path) => `    ${path}: ${node.value}`,
 };
 
 const stringToArray = (diffObject) => Object.keys(diffObject).map((key) => {
