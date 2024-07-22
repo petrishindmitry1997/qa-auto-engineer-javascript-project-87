@@ -3,7 +3,7 @@ install:
 	npm ci --legacy-peer-deps
 
 run:
-	node gendiff-start.js
+	node bin/gendiff.js
 
 test:
 	npx jest
