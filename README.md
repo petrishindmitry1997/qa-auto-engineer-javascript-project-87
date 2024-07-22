@@ -1,3 +1,2 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/konata7/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/konata7/qa-auto-engineer-javascript-project-87/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5cf7e2fb1c5807999348/maintainability)](https://codeclimate.com/github/konata7/qa-auto-engineer-javascript-project-87/maintainability)
+[![Actions Status](https://github.com/petrishindmitry1997/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/petrishindmitry1997/qa-auto-engineer-javascript-project-87/actions)
