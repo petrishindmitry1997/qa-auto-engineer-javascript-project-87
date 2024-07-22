@@ -12,14 +12,14 @@ test('gendiff flat json', () => {
   const file1 = getFixturePath('flat1.json');
   const file2 = getFixturePath('flat2.json');
 
-  expect(genDiff(file1, file2)).toEqual(readFile('expectedFlat.txt'));
+  expect(genDiff(file1, file2)).toEqual(readFile('expectedStyle.txt'));
 });
 
 test('gendiff flat yaml', () => {
   const file1 = getFixturePath('flat1.yml');
   const file2 = getFixturePath('flat2.yml');
 
-  expect(genDiff(file1, file2)).toEqual(readFile('expectedFlat.txt'));
+  expect(genDiff(file1, file2)).toEqual(readFile('expectedStyle.txt'));
 });
 
 test('gendiff --format plain', () => {
@@ -33,7 +33,7 @@ test('gendiff --format json', () => {
   const file1 = getFixturePath('flat1.json');
   const file2 = getFixturePath('flat2.json');
 
-  expect(genDiff(file1, file2, 'json')).toEqual(readFile('expectedFlat.txt'));
+  expect(genDiff(file1, file2, 'json')).toEqual(readFile('expectedJson.txt'));
 });
 
 test('gendiff unsupported file', () => {
