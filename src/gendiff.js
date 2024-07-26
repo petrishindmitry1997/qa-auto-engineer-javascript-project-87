@@ -3,23 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import format from './formatters/index.js';
 import parse from './parser.js';
-
-const buildDiff = (object1, object2) => {
-  const allKeys = _.union(Object.keys(object1), Object.keys(object2));
-  const sortedKeys = _.sortBy(allKeys);
-  return sortedKeys.reduce((acc, currentKey) => {
-    if (object2[currentKey] === undefined) {
-      return { ...acc, [currentKey]: { type: 'deleted', value: object1[currentKey] } };
-    }
-    if (object1[currentKey] === undefined) {
-      return { ...acc, [currentKey]: { type: 'added', value: object2[currentKey] } };
-    }
-    if (object1[currentKey] === object2[currentKey]) {
-      return { ...acc, [currentKey]: { type: 'unchanged', value: object1[currentKey] } };
-    }
-    return { ...acc, [currentKey]: { type: 'updated', old: object1[currentKey], new: object2[currentKey] } };
-  }, {});
-};
+import buildDiff from './buildDiff.js';
 
 const makeFullPath = (path1) => path.resolve(path1);
 
