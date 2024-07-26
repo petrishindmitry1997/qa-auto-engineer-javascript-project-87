@@ -4,8 +4,6 @@
 ### Code Climate badge maintainability: 
 [![Maintainability](https://api.codeclimate.com/v1/badges/284108ed6a7c3f2a44e4/maintainability)](https://codeclimate.com/github/petrishindmitry1997/qa-auto-engineer-javascript-project-87/maintainability)
 
-### Code Climate test coverage: 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/284108ed6a7c3f2a44e4/test_coverage)](https://codeclimate.com/github/petrishindmitry1997/qa-auto-engineer-javascript-project-87/test_coverage)
 
 ## Setup
 
