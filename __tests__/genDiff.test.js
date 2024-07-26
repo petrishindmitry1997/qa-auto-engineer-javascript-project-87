@@ -8,13 +8,15 @@ const __dirname = path.dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'UTF-8');
 
-test.each([
-  ['flat1.json', 'flat2.json', 'expectedStyle.txt'],
-  ['flat1.yml', 'flat2.yml', 'expectedStyle.txt'],
-  ['flat1.yml', 'flat2.yml', 'expectedPlain.txt'],
-  ['flat1.json', 'flat2.json', 'expectedJson.txt'],
-])('gendiff flat comparison between two files', (file1, file2, expectedResult) => {
-  expect(genDiff(getFixturePath(file1), getFixturePath(file2))).toEqual(readFile(expectedResult));
+const testCases = [
+  ['flat1.json', 'flat2.json', 'expectedStyle.txt', undefined],
+  ['flat1.yml', 'flat2.yml', 'expectedStyle.txt', undefined],
+  ['flat1.yml', 'flat2.yml', 'expectedPlain.txt', 'plain'],
+  ['flat1.json', 'flat2.json', 'expectedJson.txt', 'json'],
+];
+
+test.each(testCases)('gendiff test comparison between two files', (file1, file2, expected, format) => {
+  expect(genDiff(getFixturePath(file1), getFixturePath(file2), format)).toEqual(readFile(expected));
 });
 
 test('gendiff unsupported file', () => {
