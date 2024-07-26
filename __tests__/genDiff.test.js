@@ -28,5 +28,5 @@ test('gendiff unsupported file', () => {
   const filepath1 = getFixturePath('flat1.json');
   const filepath2 = getFixturePath('flat2.json');
 
-  expect(() => genDiff(filepath1, filepth2, 'unsupported file')).toThrow('Error');
+  expect(() => genDiff(filepath1, filepath2, 'unsupported file')).toThrow('Error');
 });
