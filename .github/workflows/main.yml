@@ -1,56 +1,40 @@
-name: build
+name: Node.js CI
+
 on:
   push:
-    branches:
-      - main
-    tags:
-      - '!*' # Do not execute on tags
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
-  test:
-    strategy:
-      matrix:
-        os:
-          - { index: 1, os-name: 'ubuntu-latest', os-label: 'Linux' }
-          - { index: 2, os-name: 'macos-latest', os-label: 'macOS' }
-          - { index: 3, os-name: 'windows-latest', os-label: 'Windows' }
-        node: [ '16', '20' ]
-    name: "Tests (${{ matrix.os.os-label }}, node:${{ matrix.node }})"
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: setup node.js
-        uses: actions/setup-node@v4
-
-      - name: install dependencies
-        run: make install
-
-      - name: run linter
-        run: make lint
-
-      - name: run tests
-        run: make test
-  coverage:
-    needs: [ test ]
-    name: coverage
-    if: ${{ github.event_name == 'push' }} # Publish coverage only for push commits, not PRs.
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-
-      - name: setup node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: install dependencies
-        run: make install
-
-      - name: publish code coverage to code-climate (duh)
-        uses: paambaati/codeclimate-action@v6.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: make test-coverage
+    - uses: actions/checkout@v2
+    - name: Use Node.js 
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+    - name: npm install, build
+      # Install and build project
+      run: |
+        make install
+      # Add environment variables
+      env:
+        CI: true
+    - name: Run linter
+      # Run Linter
+      run: |
+        make lint
+    - name: Test & publish code coverage
+      # Publish code coverage on Code Climate
+      # https://github.com/paambaati/codeclimate-action
+      uses: paambaati/codeclimate-action@v2.6.0
+      # Add Code Climate secret key
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: make test-coverage
+        debug: true
