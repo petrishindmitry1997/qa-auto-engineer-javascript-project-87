@@ -14,7 +14,7 @@ const getData = (filePath) => {
   return parse(data, fileFormat);
 };
 
-const genDiff = (filepath1, filepath2, outputFormat = 'style') => {
+const genDiff = (filepath1, filepath2, outputFormat) => {
   const object1 = getData(makeFullPath(filepath1));
   const object2 = getData(makeFullPath(filepath2));
 
