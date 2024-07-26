@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const buildDiff = (object1, object2) => {
   const allKeys = _.union(Object.keys(object1), Object.keys(object2));
   const sortedKeys = _.sortBy(allKeys);
