@@ -2,7 +2,7 @@ const statusRn = (diffObject) => Object.keys(diffObject).filter((key) => ['added
 
 const solution = {
   deleted: (node, path) => `Property '${path}' was removed`,
-  updated: (node, path) => `Property '${path}' was updated. From ${node.old} to ${node.new}`,
+  updated: (node, path) => `Property '${path}' was updated. From ${node.value1} to ${node.value2}`,
   added: (node, path) => `Property '${path}' was added with value: ${node.value}`,
 };
 

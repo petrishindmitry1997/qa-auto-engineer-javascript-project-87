@@ -1,6 +1,6 @@
 const status = {
   deleted: (node, path) => `  - ${path}: ${node.value}`,
-  updated: (node, path) => `  - ${path}: ${node.old}\n  + ${path}: ${node.new}`,
+  updated: (node, path) => `  - ${path}: ${node.value1}\n  + ${path}: ${node.value2}`,
   added: (node, path) => `  + ${path}: ${node.value}`,
   unchanged: (node, path) => `    ${path}: ${node.value}`,
 };
